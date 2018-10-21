@@ -8,6 +8,7 @@
 
 import XCTest
 import RxSwift
+
 @testable import RickAndMorty
 
 final class RickAndMortyTests: XCTestCase {
@@ -21,6 +22,29 @@ final class RickAndMortyTests: XCTestCase {
     XCTAssertEqual(date, "11 months ago")
   }
 
+  
+  func testCallBacks(){
+    let characters = getCharacters()
+    let expectationDescription = expectation(description: "Character service callback called")
+    
+    characters.asObservable().subscribe(onNext: { model in
+      let character: CharacterModel?
+      character = model
+      XCTAssertTrue(character != nil)
+      expectationDescription.fulfill()
+    }, onError: { (error) in
+      
+    }, onCompleted: {
+  
+    }).disposed(by: bag)
+    
+    waitForExpectations(timeout: 1) { (error) in
+      if let error = error{
+        XCTFail("expectation with time out: \(error)")
+      }
+    }
+  }
+  
   
   
   
