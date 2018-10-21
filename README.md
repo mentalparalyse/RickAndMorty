@@ -40,6 +40,6 @@
 # Todo 
 - [x] Add characters and their description
 - [ ] Add locations based form each character
-- [ ]Add each episode description
+- [ ] Add each episode description
 
 
