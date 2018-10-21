@@ -37,10 +37,9 @@
 - ObjectMapper
 
 
-
-
-# In finaly, want to say
-
-**Have fun**
+# Todo 
+- [x] Add characters and their description
+- [ ] Add locations based form each character
+- [ ]Add each episode description
 
 
