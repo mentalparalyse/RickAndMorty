@@ -11,8 +11,7 @@ import UIKit
 protocol Coordinator {
   var childControllers: [Coordinator] {get set}
   var navigationController: UINavigationController {get set}
-  
-  
+    
   func start()
   func showDetailCharacter(_ character: CharacterViewData)
   func removeDetailView(_ view: UIView)
