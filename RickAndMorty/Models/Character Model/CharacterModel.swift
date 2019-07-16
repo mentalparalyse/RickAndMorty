@@ -48,7 +48,6 @@ final class CharacterModel: Mappable{
     var url: String?
     
     public init?(map: Map) {
-      
     }
     
     mutating func mapping(map: Map) {

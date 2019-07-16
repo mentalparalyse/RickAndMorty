@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
     let characterNavigation = UINavigationController()
+    let ramTabBarController = UITabBarController()
     
-    coordinator = CharacterCoordinator(navigationController: characterNavigation)
-//    coordinator?.prefersLargeTitle(true)
+    coordinator = CharacterCoordinator(navigationController: characterNavigation, tabBarController: ramTabBarController)
     coordinator?.start()
     
     self.window = UIWindow(frame: UIScreen.main.bounds)

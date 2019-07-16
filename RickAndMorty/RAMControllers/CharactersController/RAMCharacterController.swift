@@ -7,6 +7,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 final class RAMCharacterController: UIViewController {
   private let disposeBag = DisposeBag()
@@ -43,7 +44,7 @@ final class RAMCharacterController: UIViewController {
     return contentOffset.y + collection.frame.size.height + startingOffset >= collection.contentSize.height
   }
   
-  private var nextPageLoading = false
+  private var nextPageLoading: PublishRelay<Bool> = .init()
   
   private let characterPresenter: CharacterPresenter = {
     return CharacterPresenter(characterService: CharacterRequest())
@@ -55,8 +56,7 @@ final class RAMCharacterController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.addSubview(activityIndicator)
-    self.view.addSubview(charactersCollection)
+    self.view.addSubviews(activityIndicator, charactersCollection)
     self.pinCollectionView()
     self.pinIndicatorView()
     self.registerCells()
@@ -70,7 +70,6 @@ final class RAMCharacterController: UIViewController {
     characterPresenter.getObservableCharacters()
   }
 }
-
 
 extension RAMCharacterController: CharacterView{
   internal func setCharacters(_ characters: [CharacterViewData]) {
@@ -94,16 +93,14 @@ extension RAMCharacterController: CharacterView{
   }
 }
 
-
 //MARK:- CellSelection
 extension RAMCharacterController{
   private func actOnSelected(){
-    let index = charactersCollection.rx.itemSelected
-    index.subscribe(onNext: { (indexPath) in
-      let item = indexPath.item
-      let detailedData = self.behaviourRelayData.value[item]
-      self.coordinator?.showDetailCharacter(detailedData)
-    }).disposed(by: disposeBag)
+    charactersCollection.rx
+      .modelSelected(CharacterViewData.self)
+      .bind { [weak coordinator] in
+        coordinator?.showDetailCharacter($0)
+      }.disposed(by: disposeBag)
   }
 }
 
@@ -131,75 +128,47 @@ extension RAMCharacterController{
     charactersCollection
       .rx
       .contentOffset
-      .subscribe {
-        if RAMCharacterController
-          .nearOrBottom(contentOffset: $0.element!,
-                        collection: self.charactersCollection){
-          if self.nextPageLoading{
-            self.characterPresenter.loadMoreCharacters()
-            self.nextPageLoading = false
-          }
-        }else{
-          self.nextPageLoading = true
-        }
-      }.disposed(by: disposeBag)
+      .map {
+        return RAMCharacterController.nearOrBottom(contentOffset: $0,
+                                                   collection: self.charactersCollection)
+      }
+      .bind(to: self.nextPageLoading)
+      .disposed(by: disposeBag)
+    
+    nextPageLoading
+      .skip(1)
+      .subscribe(onNext: { [weak characterPresenter] loadNext in
+      guard loadNext else { return }
+      characterPresenter?.loadMoreCharacters()
+      }, onError: { error in
+        print(error.localizedDescription, "Error occured")
+    }).disposed(by: disposeBag)
   }
 }
 
 //MARK:- cell registration
 extension RAMCharacterController{
   private func registerCells(){
-    let cell = CharacterCell.self
-    charactersCollection.register(cellType: cell)
+    charactersCollection.register(cellType: CharacterCell.self)
   }
 }
 
 //MARK:- Activity Pining
 extension RAMCharacterController{
   func pinIndicatorView(){
-    NSLayoutConstraint(item: activityIndicator, attribute: .centerX,
-                       relatedBy: .equal, toItem: view,
-                       attribute: .centerX, multiplier: 1,
-                       constant: 0).isActive = true
-    
-    NSLayoutConstraint(item: activityIndicator, attribute: .centerY,
-                       relatedBy: .equal, toItem: view,
-                       attribute: .centerY, multiplier: 1,
-                       constant: 0).isActive = true
-    
-    NSLayoutConstraint(item: activityIndicator, attribute: .height,
-                       relatedBy: .equal, toItem: nil,
-                       attribute: .height, multiplier: 1,
-                       constant: 40).isActive = true
-    
-    NSLayoutConstraint(item: activityIndicator, attribute: .width,
-                       relatedBy: .equal, toItem: nil,
-                       attribute: .width, multiplier: 1,
-                       constant: 40).isActive = true
+    activityIndicator.snp.makeConstraints { maker in
+      maker.center.equalToSuperview()
+      maker.size.equalTo(40)
+    }
   }
 }
 
 //MARK:- CollectionView Pining
 extension RAMCharacterController{
   private func pinCollectionView(){
-    NSLayoutConstraint(item: charactersCollection, attribute: .top,
-                       relatedBy: .equal, toItem: view,
-                       attribute: .top, multiplier: 1,
-                       constant: 0).isActive = true
-    
-    NSLayoutConstraint(item: charactersCollection, attribute: .bottom,
-                       relatedBy: .equal, toItem: view,
-                       attribute: .bottom, multiplier: 1,
-                       constant: 0).isActive = true
-    
-    NSLayoutConstraint(item: charactersCollection, attribute: .leading,
-                       relatedBy: .equal, toItem: view,
-                       attribute: .leading, multiplier: 1,
-                       constant: 0).isActive = true
-    
-    NSLayoutConstraint(item: charactersCollection, attribute: .trailing,
-                       relatedBy: .equal, toItem: view,
-                       attribute: .trailing, multiplier: 1,
-                       constant: 0).isActive = true
+    charactersCollection.snp.makeConstraints { maker in
+      maker.center.equalToSuperview()
+      maker.size.equalToSuperview()
+    }
   }
 }

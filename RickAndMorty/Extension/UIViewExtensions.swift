@@ -6,4 +6,14 @@
 //  Copyright © 2019 Lex Sava. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UIView{
+  internal func addSubviews(_ views: UIView...){
+    views.forEach{
+      self.addSubview($0)
+    }
+  }
+}
+
+

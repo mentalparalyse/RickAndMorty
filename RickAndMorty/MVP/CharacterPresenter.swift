@@ -16,7 +16,6 @@ final class CharacterPresenter{
   private var nextPage: String?
   private var bag = DisposeBag()
   
-  
   init(characterService: CharacterRequest) {
     self.characterService = characterService
   }
@@ -39,22 +38,17 @@ final class CharacterPresenter{
     let characters = characterService.getCahactersAsObservable(url)
     characters.subscribe(onNext: { (model) in
       self.nextPage = model.info?.next
-      
-      let fullData = model.characterInfo.map({
-        return $0
-      })
-      
-      let viewData = fullData.map({
-        return CharacterViewData(name: $0.characterInfo.name,
-                                 imageURL: $0.characterInfo.image,
-                                 id: $0.characterInfo.id,
-                                 created: $0.characterInfo.created,
-                                 status: $0.characterInfo.status,
-                                 species: $0.characterInfo.species,
-                                 gender: $0.characterInfo.gender,
-                                 origin: $0.origin.name ?? "",
-                                 lastLocation: $0.location.name ?? "")
-      })
+      let viewData = model.characterInfo.compactMap{ return $0 }.map{
+          return CharacterViewData(name: $0.characterInfo.name,
+                                   imageURL: $0.characterInfo.image,
+                                   id: $0.characterInfo.id,
+                                   created: $0.characterInfo.created,
+                                   status: $0.characterInfo.status,
+                                   species: $0.characterInfo.species,
+                                   gender: $0.characterInfo.gender,
+                                   origin: $0.origin.name ?? "",
+                                   lastLocation: $0.location.name ?? "")
+      }
       
       self.characterView?.loadNextCharacters(viewData)
     }, onError: { (error) in
@@ -73,11 +67,9 @@ final class CharacterPresenter{
     
     characters.subscribe(onNext: { (model) in
       self.nextPage = model.info?.next
-      let fullData = model.characterInfo.map({
+      let viewData = model.characterInfo.compactMap {
         return $0
-      })
-
-      let viewData = fullData.map({
+      }.map{
         return CharacterViewData(name: $0.characterInfo.name,
                                  imageURL: $0.characterInfo.image,
                                  id: $0.characterInfo.id,
@@ -87,7 +79,7 @@ final class CharacterPresenter{
                                  gender: $0.characterInfo.gender,
                                  origin: $0.origin.name ?? "",
                                  lastLocation: $0.location.name ?? "")
-      })
+      }
       
       self.characterView?.setCharacters(viewData)
     }, onError: { (error) in

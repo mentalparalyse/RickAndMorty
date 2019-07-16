@@ -1,5 +1,7 @@
 # Rick and Morty the app
 
+![Rick and Morty](rick-and-morty.gif)
+
 # What you will find up there? 
 
 - In this app you will find nothing else but description about all Rick and Morty's characters
@@ -28,6 +30,11 @@
 ```
 - And you're good to go
 
+# Architectures used in :
+- MVP
+- VIPER
+- Coordinator
+
 
 # Pods used in application
 - RxSwift
@@ -39,7 +46,7 @@
 
 # Todo 
 - [x] Add characters and their description
-- [ ] Add locations based form each character
+- [x] Add locations based form each character
 - [ ] Add each episode description
 
 

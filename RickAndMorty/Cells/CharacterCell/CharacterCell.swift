@@ -9,7 +9,6 @@
 import UIKit
 import Nuke
 
-
 final class CharacterCell: UICollectionViewCell {
   @IBOutlet private weak var characterImageView: UIImageView!
   @IBOutlet private var characterDescription: [UILabel]!
@@ -20,8 +19,7 @@ final class CharacterCell: UICollectionViewCell {
     characterImageView.clipsToBounds = true
   }
   
-  
-  public func initialize(from cellConfig: CellConfig){
+  final public func initialize(from cellConfig: CellConfig){
     characterDescription[0].text = cellConfig.name
     let createdString = timeAgoSinceDate(cellConfig.created)
     let idString = "id: \(cellConfig.id) - created \(createdString)"
@@ -29,15 +27,5 @@ final class CharacterCell: UICollectionViewCell {
     if let imageUrl = URL(string: cellConfig.imageUrl) {
       Nuke.loadImage(with: imageUrl, into: characterImageView)
     }
-  }
-}
-
-extension CharacterCell: ReusableView{
-  static var nib: UINib {
-    return UINib(nibName: "CharacterCell", bundle: nil)
-  }
-  
-  static var reuseId: String {
-    return "characterCell"
   }
 }

@@ -1,5 +1,5 @@
 //
-//  Router.swift
+//  RAMLocationRouter.swift
 //  RickAndMorty
 //
 //  Created by Lex Sava on 11/30/18.
@@ -9,21 +9,20 @@
 import UIKit
 
 final class RAMRouter: RAMPresenterToRouterProtocol{
+  
+  static func createModule() -> UIViewController {
+    let locationController = RAMLocationsController()
     
-    static func createModule() -> UIViewController {
-        let locationController = RAMLocationsController()
-        
-        let presenter: RAMViewToPresenterProtocol & RAMInterectorToPresenterProtocol = RAMLocationPresenter()
-        let interector: RAMPresenterToInterectorProtocol = LocationInterector()
-        let router: RAMPresenterToRouterProtocol = RAMRouter()
-        
-        locationController.presenter = presenter
-        presenter.view = locationController
-        presenter.router = router
-        presenter.interector = interector
-        interector.presenter = presenter
-        
-        return locationController
-    }
+    let presenter: RAMViewToPresenterProtocol & RAMInterectorToPresenterProtocol = RAMLocationPresenter()
+    let interector: RAMPresenterToInterectorProtocol = LocationInterector()
+    let router: RAMPresenterToRouterProtocol = RAMRouter()
     
+    locationController.presenter = presenter
+    presenter.view = locationController
+    presenter.router = router
+    presenter.interector = interector
+    interector.presenter = presenter
+    
+    return locationController
+  }
 }

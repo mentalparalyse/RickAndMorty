@@ -7,27 +7,49 @@
 //
 
 import XCTest
+import ObjectMapper
 
-class LocationModelTests: XCTestCase {
+final class LocationModelTests: XCTestCase {
 
+    private var data: Data?
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        super.setUp()
+        
+        let bundle = Bundle(for: type(of: self))
+        
+        if let url = bundle.url(forResource: "LocationJSON", withExtension: "json"){
+            self.data = try? Data(contentsOf: url)
         }
     }
+    
+    override func tearDown() {
+        data = nil
+        super.tearDown()
+    }
+    
+    
+    func testLocationMapping(){
+        guard let jsonData = self.data else {
+            XCTAssert(false, "Something is wrong with json")
+            return
+        }
+        
+        let json = try! JSONSerialization.jsonObject(with: jsonData, options: [])
+
+        
+        guard let locationModel = Mapper<LocationModel>().map(JSONObject: json) else {
+            XCTAssert(false, "YOOOU")
+            return
+        }
+        
+        XCTAssertEqual(locationModel.info?.count, 394)
+        XCTAssertEqual(locationModel.info?.pages, 20)
+        XCTAssertEqual(locationModel.info?.next, "https://rickandmortyapi.com/api/location?page=2")
+        XCTAssertEqual(locationModel.info?.prev, "")
+        XCTAssertEqual(locationModel.results.count, 1)
+        
+    }
+    
 
 }

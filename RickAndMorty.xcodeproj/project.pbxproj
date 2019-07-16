@@ -14,6 +14,11 @@
 		F400D7A1217CB1E600224DFB /* CharacterJSON.json in Sources */ = {isa = PBXBuildFile; fileRef = F400D7A0217CB1E600224DFB /* CharacterJSON.json */; };
 		F400D7A2217CBB5A00224DFB /* CharacterJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = F400D7A0217CB1E600224DFB /* CharacterJSON.json */; };
 		F41526F3215FB2A70095409A /* UICollectioView+ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41526F2215FB2A70095409A /* UICollectioView+ReusableView.swift */; };
+		F41AD3A021B0A0C800B93894 /* RAMLocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41AD39F21B0A0C800B93894 /* RAMLocationsController.swift */; };
+		F41AD3A321B0A16600B93894 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41AD3A221B0A16600B93894 /* Protocols.swift */; };
+		F41AD3A621B0A4B100B93894 /* RAMLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41AD3A521B0A4B100B93894 /* RAMLocationPresenter.swift */; };
+		F41AD3A921B0A5BC00B93894 /* RAMLocationInterector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41AD3A821B0A5BC00B93894 /* RAMLocationInterector.swift */; };
+		F41AD3AC21B0A82300B93894 /* RAMLocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41AD3AB21B0A82300B93894 /* RAMLocationRouter.swift */; };
 		F42F18272158E1F4000E0B57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42F18262158E1F4000E0B57 /* AppDelegate.swift */; };
 		F42F182E2158E1F5000E0B57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F42F182D2158E1F5000E0B57 /* Assets.xcassets */; };
 		F42F18312158E1F6000E0B57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F42F182F2158E1F6000E0B57 /* LaunchScreen.storyboard */; };
@@ -32,6 +37,10 @@
 		F483DF93216610F000B642DC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F483DF92216610F000B642DC /* Coordinator.swift */; };
 		F48B1733215A804A00AFC1FF /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48B1731215A804A00AFC1FF /* CharacterCell.swift */; };
 		F48B1734215A804A00AFC1FF /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48B1732215A804A00AFC1FF /* CharacterCell.xib */; };
+		F48ED43B219B738900796E30 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ED43A219B738900796E30 /* LocationModel.swift */; };
+		F48ED43D219B75B400796E30 /* LocationModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ED43C219B75B400796E30 /* LocationModelTests.swift */; };
+		F48ED43E219B767400796E30 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ED43A219B738900796E30 /* LocationModel.swift */; };
+		F48F1C6B22D3DBBF007CA77D /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F1C6A22D3DBBF007CA77D /* UIViewExtensions.swift */; };
 		F49D7C7B216B7CF10014D002 /* DetailCharacterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F49D7C7A216B7CF10014D002 /* DetailCharacterView.xib */; };
 		F49D7C7D216B7D050014D002 /* DetailCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49D7C7C216B7D050014D002 /* DetailCharacterView.swift */; };
 		F49D7C7F216B826E0014D002 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49D7C7E216B826E0014D002 /* StringExtension.swift */; };
@@ -72,6 +81,11 @@
 		F400D79A217CB09200224DFB /* CharacterModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModelTests.swift; sourceTree = "<group>"; };
 		F400D7A0217CB1E600224DFB /* CharacterJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CharacterJSON.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		F41526F2215FB2A70095409A /* UICollectioView+ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectioView+ReusableView.swift"; sourceTree = "<group>"; };
+		F41AD39F21B0A0C800B93894 /* RAMLocationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMLocationsController.swift; sourceTree = "<group>"; };
+		F41AD3A221B0A16600B93894 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		F41AD3A521B0A4B100B93894 /* RAMLocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMLocationPresenter.swift; sourceTree = "<group>"; };
+		F41AD3A821B0A5BC00B93894 /* RAMLocationInterector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMLocationInterector.swift; sourceTree = "<group>"; };
+		F41AD3AB21B0A82300B93894 /* RAMLocationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMLocationRouter.swift; sourceTree = "<group>"; };
 		F42F18232158E1F4000E0B57 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F42F18262158E1F4000E0B57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F42F182D2158E1F5000E0B57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +106,10 @@
 		F483DF92216610F000B642DC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F48B1731215A804A00AFC1FF /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		F48B1732215A804A00AFC1FF /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
+		F48ED438219B733100796E30 /* LocationJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocationJSON.json; sourceTree = "<group>"; };
+		F48ED43A219B738900796E30 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		F48ED43C219B75B400796E30 /* LocationModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModelTests.swift; sourceTree = "<group>"; };
+		F48F1C6A22D3DBBF007CA77D /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		F49D7C7A216B7CF10014D002 /* DetailCharacterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCharacterView.xib; sourceTree = "<group>"; };
 		F49D7C7C216B7D050014D002 /* DetailCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCharacterView.swift; sourceTree = "<group>"; };
 		F49D7C7E216B826E0014D002 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -156,6 +174,7 @@
 			children = (
 				F400D79F217CB1CC00224DFB /* JSON Models */,
 				F400D79A217CB09200224DFB /* CharacterModelTests.swift */,
+				F48ED43C219B75B400796E30 /* LocationModelTests.swift */,
 			);
 			path = "Model Testing";
 			sourceTree = "<group>";
@@ -164,8 +183,68 @@
 			isa = PBXGroup;
 			children = (
 				F400D7A0217CB1E600224DFB /* CharacterJSON.json */,
+				F48ED438219B733100796E30 /* LocationJSON.json */,
 			);
 			path = "JSON Models";
+			sourceTree = "<group>";
+		};
+		F41472B722D3DB7C003F0F64 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F48F1C6A22D3DBBF007CA77D /* UIViewExtensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		F41AD39D21B09D8000B93894 /* VIPER */ = {
+			isa = PBXGroup;
+			children = (
+				F41AD3AA21B0A80700B93894 /* RAMRouter */,
+				F41AD3A721B0A59800B93894 /* RAMLocationInterector */,
+				F41AD3A421B0A47800B93894 /* RAMLocationPresenter */,
+				F41AD3A121B0A14C00B93894 /* Protocols */,
+			);
+			path = VIPER;
+			sourceTree = "<group>";
+		};
+		F41AD39E21B0A0A400B93894 /* LocationsController */ = {
+			isa = PBXGroup;
+			children = (
+				F41AD39F21B0A0C800B93894 /* RAMLocationsController.swift */,
+			);
+			path = LocationsController;
+			sourceTree = "<group>";
+		};
+		F41AD3A121B0A14C00B93894 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F41AD3A221B0A16600B93894 /* Protocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F41AD3A421B0A47800B93894 /* RAMLocationPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				F41AD3A521B0A4B100B93894 /* RAMLocationPresenter.swift */,
+			);
+			path = RAMLocationPresenter;
+			sourceTree = "<group>";
+		};
+		F41AD3A721B0A59800B93894 /* RAMLocationInterector */ = {
+			isa = PBXGroup;
+			children = (
+				F41AD3A821B0A5BC00B93894 /* RAMLocationInterector.swift */,
+			);
+			path = RAMLocationInterector;
+			sourceTree = "<group>";
+		};
+		F41AD3AA21B0A80700B93894 /* RAMRouter */ = {
+			isa = PBXGroup;
+			children = (
+				F41AD3AB21B0A82300B93894 /* RAMLocationRouter.swift */,
+			);
+			path = RAMRouter;
 			sourceTree = "<group>";
 		};
 		F42F181A2158E1F4000E0B57 = {
@@ -193,6 +272,10 @@
 		F42F18252158E1F4000E0B57 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				F41472B722D3DB7C003F0F64 /* Extension */,
+				F41AD39D21B09D8000B93894 /* VIPER */,
+				F483DF90216610D800B642DC /* Coordinator */,
+				F4A2767F2162243900C761E5 /* MVP */,
 				F49D7C79216B7CCF0014D002 /* RAMDetailView */,
 				F43C4421215E7DD100BBF457 /* Extensions */,
 				F48B172F215A801900AFC1FF /* Cells */,
@@ -230,6 +313,7 @@
 		F42F18542158E23C000E0B57 /* RAMControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F41AD39E21B0A0A400B93894 /* LocationsController */,
 				F4810D51216617FF00E6B4C7 /* CharactersController */,
 			);
 			path = RAMControllers;
@@ -238,8 +322,7 @@
 		F42F18572158E270000E0B57 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F483DF90216610D800B642DC /* Coordinator */,
-				F4A2767F2162243900C761E5 /* MVP */,
+				F48ED439219B737800796E30 /* Location Model */,
 				F43C441C215E4FEF00BBF457 /* Character Model */,
 			);
 			path = Models;
@@ -312,6 +395,14 @@
 				F48B1732215A804A00AFC1FF /* CharacterCell.xib */,
 			);
 			path = CharacterCell;
+			sourceTree = "<group>";
+		};
+		F48ED439219B737800796E30 /* Location Model */ = {
+			isa = PBXGroup;
+			children = (
+				F48ED43A219B738900796E30 /* LocationModel.swift */,
+			);
+			path = "Location Model";
 			sourceTree = "<group>";
 		};
 		F49D7C79216B7CCF0014D002 /* RAMDetailView */ = {
@@ -507,26 +598,30 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RickAndMorty/Pods-RickAndMorty-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RickAndMorty/Pods-RickAndMorty-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RickAndMorty/Pods-RickAndMorty-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RickAndMorty/Pods-RickAndMorty-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DB2877DAEB3B3A112B875399 /* [CP] Check Pods Manifest.lock */ = {
@@ -554,19 +649,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48F1C6B22D3DBBF007CA77D /* UIViewExtensions.swift in Sources */,
 				F4A27684216226AD00C761E5 /* CharacterPresenter.swift in Sources */,
 				F42F185C2158F8F2000E0B57 /* RAMCharactersRequest.swift in Sources */,
+				F41AD3A921B0A5BC00B93894 /* RAMLocationInterector.swift in Sources */,
 				F483DF93216610F000B642DC /* Coordinator.swift in Sources */,
+				F41AD3A321B0A16600B93894 /* Protocols.swift in Sources */,
 				F42F18612158FA13000E0B57 /* AccessLinks.swift in Sources */,
 				F49D7C7F216B826E0014D002 /* StringExtension.swift in Sources */,
+				F41AD3A021B0A0C800B93894 /* RAMLocationsController.swift in Sources */,
 				F42F18562158E264000E0B57 /* RAMCharacterController.swift in Sources */,
 				F49D7C7D216B7D050014D002 /* DetailCharacterView.swift in Sources */,
+				F41AD3AC21B0A82300B93894 /* RAMLocationRouter.swift in Sources */,
 				F48B1733215A804A00AFC1FF /* CharacterCell.swift in Sources */,
+				F48ED43B219B738900796E30 /* LocationModel.swift in Sources */,
 				F43C4420215E6F5F00BBF457 /* CellConfigurator.swift in Sources */,
 				F43C4423215E7DF000BBF457 /* UIView+TopCorners.swift in Sources */,
 				F42F18592158E282000E0B57 /* CharacterModel.swift in Sources */,
 				F41526F3215FB2A70095409A /* UICollectioView+ReusableView.swift in Sources */,
 				F4A276812162244A00C761E5 /* CharacterServices.swift in Sources */,
+				F41AD3A621B0A4B100B93894 /* RAMLocationPresenter.swift in Sources */,
 				F4A33143215F664B0051A303 /* Date+Formatter.swift in Sources */,
 				F42F18272158E1F4000E0B57 /* AppDelegate.swift in Sources */,
 			);
@@ -576,8 +678,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48ED43E219B767400796E30 /* LocationModel.swift in Sources */,
 				F400D79B217CB09200224DFB /* CharacterModelTests.swift in Sources */,
 				F42F185D2158F8F2000E0B57 /* RAMCharactersRequest.swift in Sources */,
+				F48ED43D219B75B400796E30 /* LocationModelTests.swift in Sources */,
 				F4A33144215F91EC0051A303 /* CharacterModel.swift in Sources */,
 				F42F18622158FA13000E0B57 /* AccessLinks.swift in Sources */,
 				F42F183C2158E1F6000E0B57 /* RickAndMortyTests.swift in Sources */,

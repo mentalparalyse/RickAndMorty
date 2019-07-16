@@ -12,7 +12,7 @@ pod 'Nuke'
 pod 'RxSwift'
 pod 'RxCocoa'
 pod 'RxGesture'
-
+pod 'SnapKit'
   target 'RickAndMortyTests' do
     inherit! :search_paths
     # Pods for testing

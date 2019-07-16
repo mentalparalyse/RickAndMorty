@@ -10,7 +10,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-
 struct CharacterViewData{
   var name: String
   var imageURL: String
