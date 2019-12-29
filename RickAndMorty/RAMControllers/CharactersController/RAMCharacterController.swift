@@ -125,6 +125,15 @@ extension RAMCharacterController{
  */
 extension RAMCharacterController{
   private func detectScroll(){
+    UIApplication.shared
+      .rx
+      .observe(Void.self, "applicationDidBecomeActive(_:)")
+      .debug("App state is here")
+      .bind { _ in
+        print("applicationDidBecomeActive(_ application: UIApplication)")
+      }
+      .disposed(by: disposeBag)
+    
     charactersCollection
       .rx
       .contentOffset

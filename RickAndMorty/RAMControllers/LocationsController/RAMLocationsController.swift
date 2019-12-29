@@ -8,8 +8,6 @@
 
 import UIKit
 import SnapKit
-import RxSwift
-import RxCocoa
 
 final class RAMLocationsController: UIViewController {
   public weak var presenter: RAMViewToPresenterProtocol?
