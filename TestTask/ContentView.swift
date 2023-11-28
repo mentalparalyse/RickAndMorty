@@ -7,65 +7,6 @@
 
 import SwiftUI
 
-class ContentViewModel: ObservableObject {
-    @Published var characters: [CharacterModel] = []
-    @Published var locations: [LocationModel] = []
-    @Published var searchCharacters: [CharacterModel] = []
-    
-    @Published private var charactersInfo: ResultInfo?
-    
-    @Published var searchText: String = ""
-    @Published var selection: Int = 0
-    
-    private let bag = CancelBag()
-    private let networkService: NetworkServiceProtocol
-    init(_ networkService: NetworkServiceProtocol) {
-        self.networkService = networkService
-        updateData(AccessLinks.character.createURL().absoluteString)
-        setupObservers()
-    }
-    
-    func setupObservers() {
-        $selection
-            .receive(on: RunLoop.main)
-            .sink { [weak self] in
-                guard let self else { return }
-                if $0 == self.characters.count,
-                   let nextPage = self.charactersInfo?.next,
-                    searchText.isEmpty {
-                    self.updateData(nextPage)
-                }
-            }
-            .store(in: bag)
-        
-        $searchText
-            .sink { [weak self] value in
-                guard let self else { return }
-                self.searchCharacters = self.results(for: value)
-            }
-            .store(in: bag)
-    }
-    
-    private func results(for search: String) -> [CharacterModel] {
-        searchCharacters = characters
-        return searchCharacters.filter { $0.name.contains(search) }
-    }
-    
-    
-    private func updateData(_ pageLink: String) {
-        Task.detached(priority: .high) { @MainActor [weak self] in
-            guard let self else { return }
-            let newCharacters = await self.networkService.loadNextData(
-                model: CharacterResultsModel.self,
-                link: pageLink
-            )
-            self.searchCharacters.append(contentsOf: newCharacters?.results ?? [])
-            self.characters.append(contentsOf: newCharacters?.results ?? [])
-            self.charactersInfo = newCharacters?.info
-        }
-    }
-}
-
 struct ContentView: View {
     @ObservedObject var viewModel: ContentViewModel
     @State private var scrollOffset: CGFloat = 0
@@ -78,6 +19,8 @@ struct ContentView: View {
                 scrollOffset: $scrollOffset
             )
             CharactersListView(
+                displayableData: $viewModel.displayableData,
+                searchResultss: $viewModel.searchDataResults,
                 characters: $viewModel.characters,
                 searchResults: $viewModel.searchCharacters,
                 searchText: $viewModel.searchText,
@@ -90,12 +33,12 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
         )
     }
-    
 }
 
 extension ContentView {
- 
     struct CharactersListView: View {
+        @Binding var displayableData: [DisplayedData]
+        @Binding var searchResultss: [DisplayedData]
         @Binding var characters: [CharacterModel]
         @Binding var searchResults: [CharacterModel]
         @Binding var searchText: String

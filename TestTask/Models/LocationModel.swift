@@ -18,30 +18,12 @@ import Foundation
  created    string    Time at which the location was created in the database.
  */
 
-
 protocol LocationModelProtocol: Codable, Equatable {
     var id: Int { get set }
     var name: String { get set }
     var type: String { get set }
     var dimension: String { get set }
     var residents: [String] { get set }
-}
-
-struct LocationResultsModel: Codable {
-    var results: [LocationModel]
-    enum CodingKeys: CodingKey {
-        case results
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.results = try container.decode([LocationModel].self, forKey: .results)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.results, forKey: .results)
-    }
 }
 
 struct LocationModel: LocationModelProtocol {
@@ -60,7 +42,13 @@ struct LocationModel: LocationModelProtocol {
         self.residents = try container.decode([String].self, forKey: .residents)
     }
     
-    init(id: Int, name: String, type: String, dimension: String, residents: [String]) {
+    init(
+        id: Int,
+        name: String,
+        type: String,
+        dimension: String,
+        residents: [String]
+    ) {
         self.id = id
         self.name = name
         self.type = type

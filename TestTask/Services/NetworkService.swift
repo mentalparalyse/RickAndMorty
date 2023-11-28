@@ -6,10 +6,18 @@
 //
 
 import Foundation
+import Combine
+
+enum NetworkError: Error {
+    case invalidURL
+    case requestFailed(Error)
+    case invalidResponse
+    case decodingError(Error)
+}
 
 enum AccessLinks: String {
-    case character = "character/"
-    case location = "loction/"
+    case character = "character"
+    case location = "location"
     case episode = "episode"
     
     func createURL() -> URL {
@@ -20,22 +28,20 @@ enum AccessLinks: String {
     }
 }
 
-protocol HoldingResults {
-    associatedtype R
-    var results: [R] { get }
-}
-
-struct Response<T: Codable>: Codable {
-    var results: [T]
-}
-
-extension Response: HoldingResults { }
-
 
 protocol NetworkServiceProtocol {
     func loadData<T: Codable>(model: T.Type, link: AccessLinks) async -> T?
     func loadNextData<T: Codable>(model: T.Type, link: String) async -> T?
+    func load<T: Codable>(model: T.Type, url link: AccessLinks) async -> AnyPublisher<Result<T, NetworkError>, Never>
+    func load<T: ResponseModelProtocol>(for selection: ListSelection, url link: AccessLinks) async -> AnyPublisher<Result<T, NetworkError>, Never>
 }
+
+class NetworkErrorHandler {
+    static func handle<T: Codable>(_ error: NetworkError) -> AnyPublisher<Result<T, NetworkError>, Never> {
+        Just(Result.failure(error)).eraseToAnyPublisher()
+    }
+}
+
 
 class NetworkService: NetworkServiceProtocol {
     private var session: URLSession = {
@@ -44,7 +50,6 @@ class NetworkService: NetworkServiceProtocol {
         configuration.timeoutIntervalForResource = 120
         configuration.waitsForConnectivity = true
         configuration.httpMaximumConnectionsPerHost = 6
-//        configuration.requestCachePolicy = .returnCacheDataElseLoad
         configuration.urlCache = .shared
         return URLSession(configuration: configuration)
     }()
@@ -61,6 +66,35 @@ class NetworkService: NetworkServiceProtocol {
             print(error.localizedDescription)
             return nil
         }
+    }
+    func load<T: ResponseModelProtocol>(for selection: ListSelection, url link: AccessLinks) async -> AnyPublisher<Result<T, NetworkError>, Never> {
+        var modelType: T.Type = switch selection {
+        case .characters:
+             CharacterResultsModel.self as! T.Type
+        case .locations:
+             LocationResultsModel.self as! T.Type
+        case .episode:
+             EpisodeModelResult.self as! T.Type
+        }
+        return await load(model: modelType, url: link)
+    }
+    
+    func load<T: Codable>(model: T.Type, url link: AccessLinks) async -> AnyPublisher<Result<T, NetworkError>, Never> {
+        return session.dataTaskPublisher(for: link.createURL())
+            .tryMap { data, response in
+                guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                    throw NetworkError.invalidResponse
+                }
+                return data
+            }
+            .decode(type: T.self, decoder: JSONDecoder())
+            .map {
+                Result.success($0)
+            }
+            .catch { error -> AnyPublisher<Result<T, NetworkError>, Never> in
+                NetworkErrorHandler.handle(.decodingError(error))
+            }
+            .eraseToAnyPublisher()
     }
     
     func loadNextData<T: Codable>(model: T.Type, link: String) async -> T? {
