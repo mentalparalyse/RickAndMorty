@@ -14,15 +14,13 @@ struct ContentView: View {
     var body: some View {
         VStack {
             CharactersCarouselView(
-                characters: $viewModel.characters,
+                displayedData: $viewModel.displayableData,
                 selection: $viewModel.selection,
                 scrollOffset: $scrollOffset
             )
             CharactersListView(
                 displayableData: $viewModel.displayableData,
-                searchResultss: $viewModel.searchDataResults,
-                characters: $viewModel.characters,
-                searchResults: $viewModel.searchCharacters,
+                searchResults: $viewModel.searchDataResults,
                 searchText: $viewModel.searchText,
                 offset: $scrollOffset
             )
@@ -38,9 +36,7 @@ struct ContentView: View {
 extension ContentView {
     struct CharactersListView: View {
         @Binding var displayableData: [DisplayedData]
-        @Binding var searchResultss: [DisplayedData]
-        @Binding var characters: [CharacterModel]
-        @Binding var searchResults: [CharacterModel]
+        @Binding var searchResults: [DisplayedData]
         @Binding var searchText: String
         @Binding var offset: CGFloat
         
@@ -48,7 +44,7 @@ extension ContentView {
             VStack {
                 searchBarView
                 ScrollViewOffset(offset: $offset) {
-                    createCharactersStack(for: searchText.isEmpty ? characters : searchResults)
+                    createCharactersStack(for: searchText.isEmpty ? displayableData : searchResults)
                 }
                 .scrollDismissesKeyboard(.immediately)
             }
@@ -56,10 +52,12 @@ extension ContentView {
         }
         
         @ViewBuilder
-        private func createCharactersStack(for data: [CharacterModel]) -> some View {
-            ForEach(data, id: \.id) { character in
-                createListCell(character)
-                Divider()
+        private func createCharactersStack(for data: [DisplayedData]) -> some View {
+            VStack(spacing: 10) {
+                ForEach(data, id: \.id) { model in
+                    ListCellView(displayedData: model)
+                    Divider()
+                }
             }
         }
         
@@ -80,27 +78,10 @@ extension ContentView {
                     UITextField.appearance().clearButtonMode = .whileEditing
                 }
         }
-        
-        func createListCell(_ character: CharacterModel) -> some View {
-            HStack {
-                AsyncImage(urlString: character.imageUrl)
-                    .frame(height: 30)
-                    .cornerRadius(15)
-                VStack(alignment: .leading) {
-                    Text(character.name)
-                    Text(character.gender)
-                        .foregroundColor(.cyan) + Text(" " + character.status)
-                        .foregroundColor(.yellow)
-                }
-                Spacer()
-            }
-            .padding(.leading, 20)
-            .frame(height: 45)
-        }
     }
     
     struct CharactersCarouselView: View {
-        @Binding var characters: [CharacterModel]
+        @Binding var displayedData: [DisplayedData]
         @Binding var selection: Int
         @Binding var scrollOffset: CGFloat
         @State private var tabHeight: CGFloat = .zero
@@ -111,9 +92,9 @@ extension ContentView {
         
         var body: some View {
             TabView(selection: $selection) {
-                ForEach(characters, id: \.id) { character in
+                ForEach(displayedData, id: \.id) { character in
                     HStack {
-                        AsyncImage(urlString: character.imageUrl)
+                        AsyncImage(urlString: character.imageUrl ?? "")
                             .frame(height: 200)
                     }
                 }

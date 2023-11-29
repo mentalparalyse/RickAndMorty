@@ -42,25 +42,24 @@ struct DisplayedData: DisplayedDataProtocol {
     }
     
     
-    init(_ locationModel: LocationModel) {
-        self.id = locationModel.id
-        self.additionalInfo = locationModel.residents
-        self.title = locationModel.name
-        self.subTitle = locationModel.dimension
-        self.imageUrl = nil
+    init(location model: LocationModel) {
+        self.id = model.id
+        self.additionalInfo = model.residents
+        self.title = model.name
+        self.subTitle = model.dimension
     }
     
-    init(_ characterModel: CharacterModel) {
-        self.id = characterModel.id
-        self.title = characterModel.name
-        self.subTitle = characterModel.gender
-        self.imageUrl = characterModel.imageUrl
+    init(character model: CharacterModel) {
+        self.id = model.id
+        self.title = model.name
+        self.subTitle = model.gender
+        self.imageUrl = model.imageUrl
     }
     
-    init(_ episodeModel: EpisodeModel) {
-        self.id = episodeModel.id
-        self.title = episodeModel.name
-        self.subTitle = episodeModel.episode
-        self.additionalInfo = episodeModel.characters
+    init(episode model: EpisodeModel) {
+        self.id = model.id
+        self.title = model.name
+        self.subTitle = model.episode
+        self.additionalInfo = model.characters
     }
 }

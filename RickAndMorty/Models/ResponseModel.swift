@@ -20,7 +20,7 @@ struct EpisodeModelResult: ResponseModelProtocol {
 }
 
 struct LocationResultsModel: ResponseModelProtocol {
-    typealias T = EpisodeModel
+    typealias T = LocationModel
     var info: ResultInfo?
     var results: [T] = []
 }
