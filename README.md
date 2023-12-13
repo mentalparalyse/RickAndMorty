@@ -26,6 +26,7 @@
 - [x] Add characters and their description
 - [x] Add locations based form each character
 - [x] Add each episode description
+- [x] Add Pagination with pages loading while scrolling 
 
 # TODO
 - [ ] Add posibility to choose list type 
