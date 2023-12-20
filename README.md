@@ -32,4 +32,4 @@
 - [ ] Add posibility to choose list type 
 - [ ] Add an abstract login/logout feature to collect favorite locations/characters/episodes in one place
 - [ ] Add animations, basic UI to make app more colorful and attractive
-
+- [ ] Extend test coverage
