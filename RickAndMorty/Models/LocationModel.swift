@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /**
  id    int    The id of the location.
  name    string    The name of the location.

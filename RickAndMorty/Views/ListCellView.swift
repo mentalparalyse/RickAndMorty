@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListCellView: View {
     var displayedData: DisplayedData
-    
+    var servicesContainer: ServicesContainerProtocol
     @State private var isExpanded = false
     
     var body: some View {
@@ -34,7 +34,7 @@ extension ListCellView {
     @ViewBuilder
     var logoView: some View {
         if let imageURL = displayedData.imageUrl {
-            AsyncImage(urlString: imageURL)
+            AsyncImage(cacher: servicesContainer.imageCacherService, urlString: imageURL)
                 .frame(height: 45)
                 .clipShape(Circle())
 //                .cornerRadius(15)
@@ -46,11 +46,11 @@ extension ListCellView {
         VStack(alignment: .leading) {
             Text(displayedData.title)
                 .font(.system(size: 20, weight: .medium, design: .monospaced))
-                .foregroundStyle(.black)
+                .foregroundStyle(.white)
             
             Text(displayedData.subTitle)
                 .font(.system(size: 15, weight: .light, design: .monospaced))
-                .foregroundStyle(.black.opacity(0.75))
+                .foregroundStyle(Color(hex: 0x87CEEB))
         }
     }
     
@@ -82,10 +82,4 @@ extension ListCellView {
             }
         }
     }
-}
-
-#Preview {
-    ListCellView(displayedData: .init(id: 10, title: "Rick", subTitle: "Sanchez", additionalInfo: ["human", "white", "science"]))
-        .frame(width: UIScreen.main.bounds.width)
-        .background(Color.red)
 }

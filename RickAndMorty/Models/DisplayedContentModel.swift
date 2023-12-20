@@ -41,7 +41,6 @@ struct DisplayedData: DisplayedDataProtocol {
         self.imageUrl = imageUrl
     }
     
-    
     init(location model: LocationModel) {
         self.id = model.id
         self.additionalInfo = model.residents
