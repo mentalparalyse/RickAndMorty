@@ -7,27 +7,39 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @ObservedObject var viewModel: ContentViewModel
+struct ContentView<Coordinator: Routing>: View {
+    @EnvironmentObject var coordinator: Coordinator
+    
+    @StateObject var viewModel: ContentViewModel<Coordinator>
     @State private var scrollOffset: CGFloat = 0
+    @State private var shouldLoadMore = false
     
     var body: some View {
         VStack {
-            CharactersCarouselView(
-                displayedData: $viewModel.displayableData,
-                selection: $viewModel.selection,
-                scrollOffset: $scrollOffset
-            )
+            if viewModel.currentSelection == .character {
+                CharactersCarouselView(
+                    services: viewModel.services,
+                    displayedData: $viewModel.displayableData,
+                    selection: $viewModel.selection,
+                    scrollOffset: $scrollOffset
+                )
+            }
+            
             CharactersListView(
+                services: viewModel.services,
                 displayableData: $viewModel.displayableData,
                 searchResults: $viewModel.searchDataResults,
                 searchText: $viewModel.searchText,
-                offset: $scrollOffset
+                offset: $scrollOffset,
+                shouldLoadMore: $shouldLoadMore
             )
         }
+        .onChange(of: shouldLoadMore) {
+            guard $0 else { return }
+            viewModel.loadNext()
+        }
         .background(
-            Color.black
-                .opacity(0.4)
+            Color(hex: 0x800080)
                 .edgesIgnoringSafeArea(.all)
         )
     }
@@ -35,10 +47,12 @@ struct ContentView: View {
 
 extension ContentView {
     struct CharactersListView: View {
+        var services: ServicesContainerProtocol
         @Binding var displayableData: [DisplayedData]
         @Binding var searchResults: [DisplayedData]
         @Binding var searchText: String
         @Binding var offset: CGFloat
+        @Binding var shouldLoadMore: Bool
         
         var body: some View {
             VStack {
@@ -48,15 +62,18 @@ extension ContentView {
                 }
                 .scrollDismissesKeyboard(.immediately)
             }
-            .background(Color.white)
         }
         
         @ViewBuilder
         private func createCharactersStack(for data: [DisplayedData]) -> some View {
-            VStack(spacing: 10) {
+            LazyVStack(spacing: 10) {
                 ForEach(data, id: \.id) { model in
-                    ListCellView(displayedData: model)
+                    ListCellView(displayedData: model, servicesContainer: services)
+                        .onAppear {
+                            shouldLoadMore = model.id == data.last?.id
+                        }
                     Divider()
+                        .overlay(Color(hex: 0xFFD700))
                 }
             }
         }
@@ -81,6 +98,7 @@ extension ContentView {
     }
     
     struct CharactersCarouselView: View {
+        var services: ServicesContainerProtocol
         @Binding var displayedData: [DisplayedData]
         @Binding var selection: Int
         @Binding var scrollOffset: CGFloat
@@ -94,8 +112,10 @@ extension ContentView {
             TabView(selection: $selection) {
                 ForEach(displayedData, id: \.id) { character in
                     HStack {
-                        AsyncImage(urlString: character.imageUrl ?? "")
-                            .frame(height: 200)
+                        if let characterURL = character.imageUrl {
+                            AsyncImage(cacher: services.imageCacherService, urlString: characterURL)
+                                .frame(height: 200)
+                        }
                     }
                 }
             }
@@ -116,23 +136,5 @@ extension ContentView {
                 tabHeight = maxHeight
             }
         }
-    }
-    
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static let stubService = NetworkService()
-    static var previews: some View {
-        ZStack {
-            Color.black.opacity(0.4)
-            ContentView(viewModel: .init(stubService))
-        }
-    }
-}
-
-
-extension View {
-    var screenSize: CGSize {
-        UIScreen.main.bounds.size
     }
 }

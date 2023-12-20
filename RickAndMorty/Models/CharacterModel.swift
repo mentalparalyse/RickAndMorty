@@ -8,7 +8,6 @@
 import Foundation
 
 /**
-
  id    int    The id of the character.
  name    string    The name of the character.
  status    string    The status of the character ('Alive', 'Dead' or 'unknown').
@@ -22,8 +21,6 @@ import Foundation
  url    string (url)    Link to the character's own URL endpoint.
  created    string    Time at which the character was created in the database.
 */
-
-
 
 protocol CharacterModelProtocol: Equatable, Codable {
     var id: Int { get set }
