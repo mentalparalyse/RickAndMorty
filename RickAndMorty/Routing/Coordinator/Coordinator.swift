@@ -10,7 +10,7 @@ import SwiftUI
 
 @MainActor
 protocol CoordinatorProtocol: AnyObject {
-    var id: UUID { get }
+    var id: UUID { get set }
     var parent: CoordinatorProtocol? { get }
     var childs: [WeakCoordinator] { get set }
     func add(child: CoordinatorProtocol)
@@ -19,10 +19,6 @@ protocol CoordinatorProtocol: AnyObject {
 }
 
 extension CoordinatorProtocol {
-    var id: UUID {
-        return UUID()
-    }
-    
     func remove(child: CoordinatorProtocol) {
         childs.removeAll(where: { $0.coordinator?.id == child.id })
     }

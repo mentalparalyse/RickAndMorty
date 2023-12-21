@@ -10,7 +10,8 @@ import UIKit
 @MainActor
 class NavigationController: UINavigationController {
     
-    convenience init(isNavigationBarHidden: Bool = true, delegate: NavigationControllerDelegateProxy? = nil) {
+    convenience init(isNavigationBarHidden: Bool = true, 
+                     delegate: NavigationControllerDelegateProxy? = nil) {
         self.init(nibName: nil, bundle: nil)
         
         self.isNavigationBarHidden = isNavigationBarHidden

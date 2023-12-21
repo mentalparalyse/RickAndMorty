@@ -69,20 +69,3 @@ class ImageCacher: ObservableObject, ImageCacherProtocol {
         cache.setObject(image, forKey: NSString(string: name))
     }
 }
-
-class StubImageCacher: ImageCacherProtocol {
-    var cache: NSCache<NSString, UIImage> {
-        .init()
-    }
-    
-    func getImage(for name: String) -> UIImage? {
-        nil
-    }
-    
-    func setImage(_ image: UIImage?, for name: String) { }
-}
-
-class StubImageLoader: ImageLoaderProtocol {
-    func cancel() { }
-    func loadImage(from url: URL) { }
-}
