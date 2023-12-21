@@ -12,13 +12,15 @@ import SwiftUI
 class RootCoordinator: CoordinatorProtocol {
     let parent: CoordinatorProtocol? = nil
     var childs = [WeakCoordinator]()
-    
+    var id: UUID
     private(set) var window: UIWindow
     private(set) var navigationController: NavigationController
     
     init(window: UIWindow, navigationController: NavigationController) {
+        self.id = UUID()
         self.window = window
         self.navigationController = navigationController
+        
         window.rootViewController = self.navigationController
         window.makeKeyAndVisible()
     }

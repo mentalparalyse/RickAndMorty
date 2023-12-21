@@ -28,17 +28,3 @@ struct ServicesContainer: ServicesContainerProtocol {
         self.networkService = networkService
     }
 }
-
-
-//struct StubServicesContainer: ServicesContainerProtocol {
-//    static let instance = Self.init()
-//    var imageCacherService: ImageCacherProtocol
-//    var imageLoaderService: ImageLoaderProtocol
-//    var networkService: NetworkServiceProtocol
-//    
-//    init() {
-//        self.imageCacherService = StubImageCacher()
-//        self.imageLoaderService = StubImageLoader()
-//        self.networkService = StubNetworkService()
-//    }
-//}

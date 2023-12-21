@@ -42,6 +42,7 @@ class DataListCoordinator: Routing {
         
     weak var parent: CoordinatorProtocol?
     var childs = [WeakCoordinator]()
+    var id: UUID
     let navigationController: NavigationController
     let factory: CoordinatorFactoryProtocol
     let startRoute: ListRoute
@@ -53,6 +54,7 @@ class DataListCoordinator: Routing {
          factory: CoordinatorFactoryProtocol, 
          startRoute: ListRoute = .main,
          services: ServicesContainerProtocol) {
+        self.id = UUID()
         self.parent = parent
         self.navigationController = navigationController
         self.factory = factory

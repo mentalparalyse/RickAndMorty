@@ -31,6 +31,19 @@
 		F429D43A2B2C7F1E00347214 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429D4392B2C7F1E00347214 /* CoordinatorFactory.swift */; };
 		F429D43C2B2C7FAB00347214 /* DataListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429D43B2B2C7FAB00347214 /* DataListCoordinator.swift */; };
 		F429D4422B2C8A8B00347214 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429D4412B2C8A8B00347214 /* FadeTransition.swift */; };
+		F458826F2B34663E00D24BB8 /* RootCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458826E2B34663E00D24BB8 /* RootCoordinatorTests.swift */; };
+		F45882712B346C5A00D24BB8 /* TransitionProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45882702B346C5A00D24BB8 /* TransitionProviderTests.swift */; };
+		F46E198A2B33285300E45794 /* StubDependeciesContrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E19892B33285300E45794 /* StubDependeciesContrainer.swift */; };
+		F46E198C2B33290A00E45794 /* StubCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E198B2B33290A00E45794 /* StubCoordinator.swift */; };
+		F46E198E2B332A8100E45794 /* StubRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E198D2B332A8100E45794 /* StubRoute.swift */; };
+		F46E19912B332AC800E45794 /* StubTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E19902B332AC800E45794 /* StubTransition.swift */; };
+		F46E19942B332C4700E45794 /* StubContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E19932B332C4700E45794 /* StubContentView.swift */; };
+		F46E19962B332C7E00E45794 /* StubAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E19952B332C7E00E45794 /* StubAppCoordinator.swift */; };
+		F46E19982B332D9F00E45794 /* StubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E19972B332D9F00E45794 /* StubDetailsView.swift */; };
+		F46E199A2B33331000E45794 /* CoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E19992B33331000E45794 /* CoordinatorTests.swift */; };
+		F46E199C2B33388500E45794 /* NavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E199B2B33388500E45794 /* NavigationControllerTests.swift */; };
+		F46E199E2B33394700E45794 /* NavigationControllerTransitionHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E199D2B33394700E45794 /* NavigationControllerTransitionHandlerTests.swift */; };
+		F46E19A02B333AF500E45794 /* NavigatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E199F2B333AF500E45794 /* NavigatorTests.swift */; };
 		F4A297142B18BAA000488B77 /* NavigationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A297132B18BAA000488B77 /* NavigationFlow.swift */; };
 		F4A297162B18BB0400488B77 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A297152B18BB0400488B77 /* Coordinator.swift */; };
 		F4A297182B18BF0800488B77 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A297172B18BF0800488B77 /* AuthService.swift */; };
@@ -101,6 +114,19 @@
 		F429D4392B2C7F1E00347214 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
 		F429D43B2B2C7FAB00347214 /* DataListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListCoordinator.swift; sourceTree = "<group>"; };
 		F429D4412B2C8A8B00347214 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
+		F458826E2B34663E00D24BB8 /* RootCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorTests.swift; sourceTree = "<group>"; };
+		F45882702B346C5A00D24BB8 /* TransitionProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionProviderTests.swift; sourceTree = "<group>"; };
+		F46E19892B33285300E45794 /* StubDependeciesContrainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubDependeciesContrainer.swift; sourceTree = "<group>"; };
+		F46E198B2B33290A00E45794 /* StubCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCoordinator.swift; sourceTree = "<group>"; };
+		F46E198D2B332A8100E45794 /* StubRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRoute.swift; sourceTree = "<group>"; };
+		F46E19902B332AC800E45794 /* StubTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubTransition.swift; sourceTree = "<group>"; };
+		F46E19932B332C4700E45794 /* StubContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubContentView.swift; sourceTree = "<group>"; };
+		F46E19952B332C7E00E45794 /* StubAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubAppCoordinator.swift; sourceTree = "<group>"; };
+		F46E19972B332D9F00E45794 /* StubDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubDetailsView.swift; sourceTree = "<group>"; };
+		F46E19992B33331000E45794 /* CoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorTests.swift; sourceTree = "<group>"; };
+		F46E199B2B33388500E45794 /* NavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerTests.swift; sourceTree = "<group>"; };
+		F46E199D2B33394700E45794 /* NavigationControllerTransitionHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerTransitionHandlerTests.swift; sourceTree = "<group>"; };
+		F46E199F2B333AF500E45794 /* NavigatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorTests.swift; sourceTree = "<group>"; };
 		F4A297132B18BAA000488B77 /* NavigationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationFlow.swift; sourceTree = "<group>"; };
 		F4A297152B18BB0400488B77 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F4A297172B18BF0800488B77 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -295,6 +321,49 @@
 			path = Transitions;
 			sourceTree = "<group>";
 		};
+		F46E19872B3327A500E45794 /* Logic Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Logic Tests";
+			sourceTree = "<group>";
+		};
+		F46E19882B33283E00E45794 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F46E19892B33285300E45794 /* StubDependeciesContrainer.swift */,
+				F46E198B2B33290A00E45794 /* StubCoordinator.swift */,
+				F46E198D2B332A8100E45794 /* StubRoute.swift */,
+				F46E19902B332AC800E45794 /* StubTransition.swift */,
+				F46E19952B332C7E00E45794 /* StubAppCoordinator.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		F46E198F2B332A9B00E45794 /* Routing Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F46E19922B332C3700E45794 /* Views */,
+				F46E19882B33283E00E45794 /* Mocks */,
+				F46E19992B33331000E45794 /* CoordinatorTests.swift */,
+				F46E199B2B33388500E45794 /* NavigationControllerTests.swift */,
+				F46E199D2B33394700E45794 /* NavigationControllerTransitionHandlerTests.swift */,
+				F46E199F2B333AF500E45794 /* NavigatorTests.swift */,
+				F458826E2B34663E00D24BB8 /* RootCoordinatorTests.swift */,
+				F45882702B346C5A00D24BB8 /* TransitionProviderTests.swift */,
+			);
+			path = "Routing Tests";
+			sourceTree = "<group>";
+		};
+		F46E19922B332C3700E45794 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F46E19932B332C4700E45794 /* StubContentView.swift */,
+				F46E19972B332D9F00E45794 /* StubDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F4A297122B18BA8D00488B77 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +380,8 @@
 		F4AD0AE82B274B3300633305 /* RickAndMortyTests */ = {
 			isa = PBXGroup;
 			children = (
+				F46E198F2B332A9B00E45794 /* Routing Tests */,
+				F46E19872B3327A500E45794 /* Logic Tests */,
 				F4FDA7E02B31EFD0000B0897 /* Network Tests */,
 				F4FDA7C72B31B30E000B0897 /* MapperTests */,
 			);
@@ -575,12 +646,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4FDA7D62B31B8F8000B0897 /* CharacterModelTests.swift in Sources */,
+				F46E199C2B33388500E45794 /* NavigationControllerTests.swift in Sources */,
+				F46E19982B332D9F00E45794 /* StubDetailsView.swift in Sources */,
 				F4FDA7E22B31EFF8000B0897 /* NetworkingTests.swift in Sources */,
 				F4FDA7D92B31BB1C000B0897 /* ModelTypes.swift in Sources */,
+				F45882712B346C5A00D24BB8 /* TransitionProviderTests.swift in Sources */,
+				F46E199E2B33394700E45794 /* NavigationControllerTransitionHandlerTests.swift in Sources */,
 				F4FDA7E52B31F022000B0897 /* NetworkServiceStub.swift in Sources */,
+				F46E19A02B333AF500E45794 /* NavigatorTests.swift in Sources */,
 				F4FDA7D32B31B85D000B0897 /* ModelsTestableProtocol.swift in Sources */,
 				F4FDA7DB2B31E1B9000B0897 /* LocationModelTests.swift in Sources */,
+				F458826F2B34663E00D24BB8 /* RootCoordinatorTests.swift in Sources */,
+				F46E19912B332AC800E45794 /* StubTransition.swift in Sources */,
+				F46E198A2B33285300E45794 /* StubDependeciesContrainer.swift in Sources */,
+				F46E19942B332C4700E45794 /* StubContentView.swift in Sources */,
+				F46E19962B332C7E00E45794 /* StubAppCoordinator.swift in Sources */,
+				F46E199A2B33331000E45794 /* CoordinatorTests.swift in Sources */,
 				F4FDA7DF2B31E7A1000B0897 /* EpisodeModelTests.swift in Sources */,
+				F46E198C2B33290A00E45794 /* StubCoordinator.swift in Sources */,
+				F46E198E2B332A8100E45794 /* StubRoute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
