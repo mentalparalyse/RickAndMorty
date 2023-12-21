@@ -31,7 +31,8 @@ class ImageLoader: ObservableObject, ImageLoaderProtocol {
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
             .map { data, response in UIImage(data: data) }
             .handleEvents(receiveCancel: { [weak self] in
-                self?.loadImage(from: url)
+                guard let self else { return }
+                self.loadImage(from: url)
             })
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] failure in
