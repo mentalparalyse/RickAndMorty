@@ -17,7 +17,7 @@ class ContentViewModel<Coordinator: Routing>: ObservableObject {
     @Published var displayableData: [DisplayedData] = []
     @Published var searchDataResults: [DisplayedData] = []
     
-    @Published private var responseInfo: ResultInfo?
+    @Published private(set) var responseInfo: ResultInfo?
     
     @Published var searchText: String = ""
     @Published var selection: Int = 0
@@ -110,3 +110,17 @@ extension ContentViewModel {
         
     }
 }
+#if DEBUG
+extension ContentViewModel {
+    
+    public func loadModels<T: ResponseModelProtocol>(
+        _ type: T.Type, 
+        _ link: AccessLinks,
+        _ transform: @escaping (T) -> [DisplayedData]
+    )  {
+        loadData(model: type, url: link.initialLink, transform)
+    }
+    
+    
+}
+#endif

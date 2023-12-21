@@ -33,6 +33,7 @@
 		F429D4422B2C8A8B00347214 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429D4412B2C8A8B00347214 /* FadeTransition.swift */; };
 		F458826F2B34663E00D24BB8 /* RootCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458826E2B34663E00D24BB8 /* RootCoordinatorTests.swift */; };
 		F45882712B346C5A00D24BB8 /* TransitionProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45882702B346C5A00D24BB8 /* TransitionProviderTests.swift */; };
+		F45882732B3470C300D24BB8 /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45882722B3470C300D24BB8 /* ContentViewModelTests.swift */; };
 		F46E198A2B33285300E45794 /* StubDependeciesContrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E19892B33285300E45794 /* StubDependeciesContrainer.swift */; };
 		F46E198C2B33290A00E45794 /* StubCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E198B2B33290A00E45794 /* StubCoordinator.swift */; };
 		F46E198E2B332A8100E45794 /* StubRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E198D2B332A8100E45794 /* StubRoute.swift */; };
@@ -116,6 +117,7 @@
 		F429D4412B2C8A8B00347214 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		F458826E2B34663E00D24BB8 /* RootCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorTests.swift; sourceTree = "<group>"; };
 		F45882702B346C5A00D24BB8 /* TransitionProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionProviderTests.swift; sourceTree = "<group>"; };
+		F45882722B3470C300D24BB8 /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 		F46E19892B33285300E45794 /* StubDependeciesContrainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubDependeciesContrainer.swift; sourceTree = "<group>"; };
 		F46E198B2B33290A00E45794 /* StubCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCoordinator.swift; sourceTree = "<group>"; };
 		F46E198D2B332A8100E45794 /* StubRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRoute.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		F46E19872B3327A500E45794 /* Logic Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F45882722B3470C300D24BB8 /* ContentViewModelTests.swift */,
 			);
 			path = "Logic Tests";
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				F4FDA7DF2B31E7A1000B0897 /* EpisodeModelTests.swift in Sources */,
 				F46E198C2B33290A00E45794 /* StubCoordinator.swift in Sources */,
 				F46E198E2B332A8100E45794 /* StubRoute.swift in Sources */,
+				F45882732B3470C300D24BB8 /* ContentViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
