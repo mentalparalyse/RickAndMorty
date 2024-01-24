@@ -26,10 +26,11 @@
 - [x] Add characters and their description
 - [x] Add locations based form each character
 - [x] Add each episode description
-- [x] Add Pagination with pages loading while scrolling 
+- [x] Add Pagination with pages loading while scrolling
+- [x] Extend test coverage
+
 
 # TODO
 - [ ] Add posibility to choose list type 
 - [ ] Add an abstract login/logout feature to collect favorite locations/characters/episodes in one place
 - [ ] Add animations, basic UI to make app more colorful and attractive
-- [ ] Extend test coverage
