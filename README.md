@@ -28,9 +28,9 @@
 - [x] Add each episode description
 - [x] Add Pagination with pages loading while scrolling
 - [x] Extend test coverage
+- [x] Add posibility to choose list type 
 
 
 # TODO
-- [ ] Add posibility to choose list type 
 - [ ] Add an abstract login/logout feature to collect favorite locations/characters/episodes in one place
 - [ ] Add animations, basic UI to make app more colorful and attractive
