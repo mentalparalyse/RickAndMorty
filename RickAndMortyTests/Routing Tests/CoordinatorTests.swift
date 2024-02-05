@@ -11,9 +11,14 @@ import XCTest
 @MainActor
 final class CoordinatorTests: XCTestCase {
     
+    var services: ServicesContainerProtocol {
+        StubServicesContainer()
+    }
+    
     func test_coordinator_initial_state() {
         let navigationController = NavigationController()
-        let sut = StubCoordinator(parent: nil, startRoute: .main, navigationController: navigationController)
+        
+        let sut = StubCoordinator(parent: nil, startRoute: .main, servicesContainer: services, navigationController: navigationController)
         XCTAssertNil(sut.parent)
         XCTAssertTrue(sut.childs.isEmpty)
     }
@@ -24,6 +29,7 @@ final class CoordinatorTests: XCTestCase {
         let coordinator = StubCoordinator(
             parent: sut,
             startRoute: .details,
+            servicesContainer: services,
             navigationController: navigationController
         )
         sut.start(with: coordinator)
@@ -37,6 +43,7 @@ final class CoordinatorTests: XCTestCase {
         let coordinator = StubCoordinator(
             parent: sut, 
             startRoute: .main,
+            servicesContainer: services,
             navigationController: navigationController
         )
         sut.start(with: coordinator)
@@ -44,6 +51,7 @@ final class CoordinatorTests: XCTestCase {
                     StubCoordinator(
                         parent: coordinator,
                         startRoute: .details,
+                        servicesContainer: services,
                         navigationController: navigationController
                     )
         )
@@ -54,7 +62,7 @@ final class CoordinatorTests: XCTestCase {
     func test_child_coordinator_remove() {
         let navigationController = NavigationController()
         let sut = StubAppCoordinator(window: .init(), navigationController: navigationController)
-        let coordinator = StubCoordinator(parent: sut, startRoute: .main, navigationController: navigationController)
+        let coordinator = StubCoordinator(parent: sut, startRoute: .main, servicesContainer: services, navigationController: navigationController)
         sut.start(with: coordinator)
         sut.remove(child: coordinator)
         XCTAssertTrue(sut.childs.isEmpty)
@@ -63,7 +71,7 @@ final class CoordinatorTests: XCTestCase {
     func test_child_coordinator_does_not_retain_coordinators() {
         let navigationController = NavigationController()
         let sut = StubAppCoordinator(window: .init(), navigationController: navigationController)
-        var coordinator: StubCoordinator? = .init(parent: sut, startRoute: .main, navigationController: navigationController)
+        var coordinator: StubCoordinator? = .init(parent: sut, startRoute: .main, servicesContainer: services, navigationController: navigationController)
         sut.add(child: coordinator!)
         XCTAssertNotNil(sut.childs.first?.coordinator)
         coordinator = nil

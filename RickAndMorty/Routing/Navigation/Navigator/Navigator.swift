@@ -19,6 +19,7 @@ protocol Navigator: ObservableObject {
     
     var navigationController: NavigationController { get }
     var startRoute: Route { get }
+    var servicesContainer: ServicesContainerProtocol { get }
     
     func start() throws
     func show(route: Route) throws

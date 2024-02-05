@@ -12,10 +12,10 @@ enum ListActions: CoordinatorAction {
 }
 
 enum ListRoute: NavigationRoute {
-    case main
+    case main, details
     
     var title: String? {
-        "Details"
+        nil
     }
     
     var appearance: RouteAppearance? {
@@ -23,7 +23,16 @@ enum ListRoute: NavigationRoute {
     }
     
     var transitionAction: TransitionAction? {
-        .push(animated: true)
+        switch self {
+        case .main:
+            return .push(animated: true)
+        case .details:
+            return .present(animated: false, modalPresentationStyle: .fullScreen, delegate: nil, nil)
+        }
+    }
+    
+    var attachCoordinator: Bool {
+        self == .main
     }
 }
 
@@ -66,11 +75,13 @@ class DataListCoordinator: Routing {
 extension DataListCoordinator: RouterViewFactory {
     @ViewBuilder
     func view(for route: ListRoute) -> some View {
-        switch route {
+        switch route {            
         case .main:
-            ContentView<DataListCoordinator>(viewModel: .init(self.servicesContainer))
-//        case .details:
-//            EmptyView()
+            ContentView<DataListCoordinator>()
+        case .details:
+            Rectangle()
+        default:
+            EmptyView()
         }
     }
 }

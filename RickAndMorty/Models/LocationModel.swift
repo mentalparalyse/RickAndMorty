@@ -7,16 +7,6 @@
 
 import Foundation
 
-/**
- id    int    The id of the location.
- name    string    The name of the location.
- type    string    The type of the location.
- dimension    string    The dimension in which the location is located.
- residents    array (urls)    List of character who have been last seen in the location.
- url    string (url)    Link to the location's own endpoint.
- created    string    Time at which the location was created in the database.
- */
-
 protocol LocationModelProtocol: Codable, Equatable {
     var id: Int { get set }
     var name: String { get set }
@@ -24,6 +14,17 @@ protocol LocationModelProtocol: Codable, Equatable {
     var dimension: String { get set }
     var residents: [String] { get set }
 }
+
+/**
+ Location Model, conforms to Equatable/Codable.
+
+ - Parameters:
+    - id:   int    The id of the location.
+    - name:    string    The name of the location.
+    - type:    string    The type of the location.
+    - dimension:    string    The dimension in which the location is located.
+    - residents:    array (urls)    List of character who have been last seen in the location.
+ */
 
 struct LocationModel: LocationModelProtocol {
     var id: Int

@@ -14,53 +14,55 @@ class ContentViewModel<Coordinator: Routing>: ObservableObject {
     
     @Published var currentSelection: AccessLinks = .character
     
-    @Published var displayableData: [DisplayedData] = []
-    @Published var searchDataResults: [DisplayedData] = []
+    @Published var displayableData: [DisplayedData] = [] 
     
     @Published private(set) var responseInfo: ResultInfo?
-    
-    @Published var searchText: String = ""
-    @Published var selection: Int = 0
-    
+        
     private let bag = CancelBag()
-    let services: ServicesContainerProtocol
+    var services: ServicesContainerProtocol? {
+        coordinator?.servicesContainer
+    }
     
-    init(_ services: ServicesContainerProtocol) {
-        self.services = services
+    #if TEST
+    init(_ coordinator: Coordinator) {
+        self.coordinator = coordinator
         setupObservers()
     }
+    #else
+    init() {
+        setupObservers()
+    }
+    #endif
 }
 
 extension ContentViewModel {
     func setupObservers() {
-        $searchText
-            .sink { [weak self] value in
-                guard let self else { return }
-                self.searchDataResults = self.results(for: value)
-            }
-            .store(in: bag)
-        
         $currentSelection
-            .sink { [weak self] in
-                guard let self else { return }
-                switch $0 {
-                case .location:
-                    self.loadLocations()
-                case .character:
-                    self.loadCharacters()
-                case .episode:
-                    self.loadEpisodes()
-                }
-            }
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: selectionChanged(to:))
             .store(in: bag)
     }
     
     func loadNext() {
-        loadCharacters()
+        updateCurrentData(from: currentSelection)
     }
     
-    private func results(for search: String) -> [DisplayedData] {
-        return searchDataResults.filter { $0.title.contains(search) }
+    private func selectionChanged(to link: AccessLinks) {
+        //First get rid of old data inside of results array.
+        displayableData.removeAll()
+        responseInfo = nil
+        updateCurrentData(from: link)
+    }
+    
+    private func updateCurrentData(from selection: AccessLinks) {
+        switch selection {
+        case .location:
+            self.loadLocations()
+        case .character:
+            self.loadCharacters()
+        case .episode:
+            self.loadEpisodes()
+        }
     }
     
     private func loadData<T: ResponseModelProtocol>(
@@ -68,9 +70,10 @@ extension ContentViewModel {
         url link: String,
         _ transform: @escaping (T) -> [DisplayedData]
     ) {
-        Task.detached(priority: .background) { [weak self] in
-            guard let self else { return }
-            let result = await self.services.networkService.load(model: type, link: link)
+        Task { [weak self] in
+            guard let self, let result = await self.services?.networkService.load(model: type, link: link) else {
+                return
+            }
             
             await MainActor.run {
                 switch result {
@@ -78,7 +81,6 @@ extension ContentViewModel {
                     guard let resultModels = success.map(transform),
                             !self.displayableData.contains(where: { $0.id == resultModels.first?.id }) else { return }
                     self.displayableData.append(contentsOf: resultModels)
-                    self.searchDataResults = self.displayableData
                     self.responseInfo = success?.info
                 case let .failure(failure):
                     self.handle(error: failure)
@@ -88,26 +90,31 @@ extension ContentViewModel {
     }
     
     private func loadCharacters() {
-        let pageLink = responseInfo?.next ?? currentSelection.initialLink
+        let pageLink = currentSelection.initialLink
+//        let pageLink = responseInfo?.next ?? currentSelection.initialLink
         loadData(model: CharacterResultsModel.self, url: pageLink) { model in
             model.results.compactMap { .init(character: $0) }
         }
     }
     
     private func loadLocations() {
-        loadData(model: LocationResultsModel.self, url: AccessLinks.location.initialLink) { model in
+        let pageLink = currentSelection.initialLink
+//        let pageLink = responseInfo?.next ?? currentSelection.initialLink
+        loadData(model: LocationResultsModel.self, url: pageLink) { model in
             model.results.compactMap { .init(location: $0) }
         }
     }
     
     private func loadEpisodes() {
-        loadData(model: EpisodeModelResult.self, url: AccessLinks.episode.initialLink) { model in
+        let pageLink = currentSelection.initialLink
+//        let pageLink = responseInfo?.next ?? currentSelection.initialLink
+        loadData(model: EpisodeModelResult.self, url: pageLink) { model in
             model.results.compactMap { .init(episode: $0) }
         }
     }
     
     private func handle(error: NetworkError) {
-        
+        print(error.localizedDescription)
     }
 }
 #if DEBUG

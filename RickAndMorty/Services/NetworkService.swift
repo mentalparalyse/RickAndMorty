@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-enum AccessLinks: String {
+enum AccessLinks: String, CaseIterable {
     case character = "character"
     case location = "location"
     case episode = "episode"
@@ -66,4 +66,3 @@ class NetworkService: NetworkServiceProtocol {
         try decoder.decode(type, from: data)
     }
 }
-

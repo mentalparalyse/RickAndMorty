@@ -34,12 +34,3 @@ extension NavigationRoute {
         true
     }
 }
-
-enum NavigationFlow: NavigationRoute {
-    case splash, main, login, details
-    
-    var transitionAction: TransitionAction? {
-        //Provide the presentation
-        .push(animated: true)
-    }
-}

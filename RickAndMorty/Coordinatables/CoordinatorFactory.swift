@@ -9,5 +9,6 @@ import SwiftUI
 
 @MainActor
 protocol CoordinatorFactoryProtocol {
-    func makeDataListCoordinator(_ parent: CoordinatorProtocol, _ services: ServicesContainerProtocol) -> DataListCoordinator
+    func makeSplashScreenCoordinator(_ parent: CoordinatorProtocol) -> SplashCoordinator
+    func makeDataListCoordinator(_ parent: CoordinatorProtocol) -> DataListCoordinator
 }
