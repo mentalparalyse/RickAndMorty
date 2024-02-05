@@ -15,6 +15,17 @@ protocol EpisodeModelProtocol: Identifiable, Equatable, Codable {
     var characters: [String] { get }
 }
 
+/**
+ Location Model, conforms to Equatable/Codable and Identifiable protocols.
+
+ - Parameters:
+    - id:    int    The id of the episode.
+    - name:    string    The name of the episode.
+    - air_date:    string    The air date of the episode.
+    - episode:    string    The code of the episode.
+    - characters:    array (urls)    List of characters who have been seen in the episode.
+ */
+
 struct EpisodeModel: EpisodeModelProtocol {
     var id: Int
     var name: String

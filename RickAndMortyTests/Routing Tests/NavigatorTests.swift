@@ -12,7 +12,8 @@ import XCTest
 final class NavigatorTests: XCTestCase {
     
     func test_route_throws_error() {
-        let sut = StubCoordinator(parent: nil, startRoute: .main, navigationController: NavigationController())
+        let sus = StubServicesContainer()
+        let sut = StubCoordinator(parent: nil, startRoute: .main, servicesContainer: sus, navigationController: NavigationController())
         XCTAssertNoThrow(try sut.start())
         XCTAssertThrowsError(try sut.show(route: .settings)) { error in
             guard let error = error as? NavigatorError else {

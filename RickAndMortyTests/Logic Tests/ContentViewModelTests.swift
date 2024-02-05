@@ -17,7 +17,8 @@ final class ContentViewModelTests: XCTestCase {
   
     func test_observers_setup() {
         servicesContainer = StubServicesContainer()
-        viewModel = ContentViewModel(servicesContainer)
+        let suc = StubCoordinator(parent: nil, servicesContainer: servicesContainer, navigationController: .init())
+        viewModel = ContentViewModel(suc)
         let searchExpectation = expectation(description: "Search text updated")
         let listSelection = expectation(description: "List selection updated")
         
@@ -37,7 +38,8 @@ final class ContentViewModelTests: XCTestCase {
     func test_models_load_failure() {
         let expectation = expectation(description: "Expected models load fail")
         servicesContainer = StubServicesContainer(.failure(NetworkError.invalidResponse), .failure(.invalidResponse))
-        viewModel = .init(servicesContainer)
+        let suc = StubCoordinator(parent: nil, servicesContainer: servicesContainer, navigationController: .init())
+        viewModel = .init(suc)
         
         viewModel.loadModels(CharacterResultsModel.self, .character) { model in
             return model.results.compactMap { .init(character: $0) }
@@ -60,8 +62,8 @@ final class ContentViewModelTests: XCTestCase {
         }
         
         servicesContainer = StubServicesContainer(.success, .success(data))
-        viewModel = .init(servicesContainer)
-        
+        let suc = StubCoordinator(parent: nil, servicesContainer: servicesContainer, navigationController: .init())
+        viewModel = .init(suc)
         viewModel.loadModels(CharacterResultsModel.self, .character) { model in
             return model.results.map { .init(character: $0) }
         }

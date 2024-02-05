@@ -18,7 +18,6 @@ struct AsyncImage: View {
         self.urlString = urlString
         self.contentMode = contentMode
         _imageLoader = .init(wrappedValue: .init(cacher))
-//        self.imageLoader = .init(cacher)
     }
     
     var body: some View {
@@ -27,7 +26,7 @@ struct AsyncImage: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: contentMode)
-                    .transition(.opacity.animation(.easeIn))
+                    .transition(.opacity.animation(.default))
             } else {
                 ProgressView()
                     .onAppear {

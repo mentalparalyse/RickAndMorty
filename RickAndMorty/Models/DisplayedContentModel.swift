@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DisplayedDataProtocol: Identifiable {
+protocol DisplayedDataProtocol: Identifiable, Equatable {
     var id: Int { get }
     var title: String { get }
     var subTitle: String { get }
@@ -25,6 +25,10 @@ struct DisplayedData: DisplayedDataProtocol {
     
     var hasChevron: Bool {
         additionalInfo != nil
+    }
+    
+    var isMock: Bool {
+        id == -999
     }
     
     init(
@@ -60,5 +64,14 @@ struct DisplayedData: DisplayedDataProtocol {
         self.title = model.name
         self.subTitle = model.episode
         self.additionalInfo = model.characters
+    }
+}
+
+extension DisplayedData {
+    static var mock: Self {
+        return .init(id: -999, title: "Name", subTitle: "Gender", additionalInfo: [
+            "https://rickandmortyapi.com/api/character/1",
+            "https://rickandmortyapi.com/api/character/2",
+        ])
     }
 }

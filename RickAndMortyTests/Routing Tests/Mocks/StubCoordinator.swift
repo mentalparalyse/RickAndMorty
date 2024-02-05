@@ -9,22 +9,24 @@ import SwiftUI
 import XCTest
 @testable import RickAndMorty
 
-
 @MainActor
 class StubCoordinator: Routing {
     
+    var id: UUID
     var navigationController: NavigationController
     var startRoute: StubRoute = .main
     var parent: CoordinatorProtocol?
     var childs = [WeakCoordinator]()
-    var id: UUID
+    var servicesContainer: ServicesContainerProtocol
     
     init(parent: CoordinatorProtocol?,
          startRoute: StubRoute = .main,
+         servicesContainer: ServicesContainerProtocol,
          navigationController: NavigationController) {
         self.id = UUID()
         self.parent = parent
         self.startRoute = startRoute
+        self.servicesContainer = servicesContainer
         self.navigationController = navigationController
     }
     func handle(action: CoordinatorAction) { }
